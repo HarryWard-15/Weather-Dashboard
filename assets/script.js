@@ -1,4 +1,5 @@
 (function ($) {
+    // localStorage.clear();
     var ulEl = document.querySelector('.search-history');
     var button = document.querySelector('.btn');
     var results = document.querySelector('.search-results');
@@ -6,7 +7,11 @@
     var searchCity = '';
     var fiveDayContainer = document.querySelector('.weekCast');
 
-    var searchHistory = {};
+    
+    var searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    if (searchHistory==null) {
+        searchHistory = {};
+    }
 
     function loadHistory() {
         ulEl.innerHTML = "";
@@ -34,10 +39,11 @@
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
         .then((response) => response.json())
         .then((data) => {
-            console.log(data.cod);
             if(data.cod == 404 || data.cod == 400) { return null }
             else {
             searchHistory[searchCity] = 0;
+            var searchHistoryString = JSON.stringify(searchHistory);
+            localStorage.setItem("searchHistory", searchHistoryString);
             loadHistory();
             displayFiveDay(data.coord.lon, data.coord.lat);
             displayOneDay(data);
@@ -98,7 +104,9 @@
                         dayHumid.textContent = "Humidity: "+data.list[j].main.humidity+ " %";
                     }
                 }
+            
         });
         results.style.opacity = '1';
     }
+    loadHistory();
 })(jQuery);
