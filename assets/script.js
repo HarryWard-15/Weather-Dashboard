@@ -29,12 +29,14 @@
     
     var dayContainer = document.querySelector('.todayCast');
     var apiKey = '099bf382f7898a2ef203e1c7447f3027';
-    
+
     function getWeather(city) {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
         .then((response) => response.json())
         .then((data) => {
-            if(data.cod != 404 || data.cod != 400) {
+            console.log(data.cod);
+            if(data.cod == 404 || data.cod == 400) { return null }
+            else {
             searchHistory[searchCity] = 0;
             loadHistory();
             displayFiveDay(data.coord.lon, data.coord.lat);
