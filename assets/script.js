@@ -1,5 +1,4 @@
 (function ($) {
-    // localStorage.clear();
     var ulEl = document.querySelector('.search-history');
     var button = document.querySelector('.btn');
     var results = document.querySelector('.search-results');
@@ -87,7 +86,6 @@
                         dayWind.classList.add("info");
                         var dayHumid = document.createElement('p');
                         dayHumid.classList.add("info");
-
                         fiveDayContainer.appendChild(dayContainer);
                         dayContainer.appendChild(dayDate);
                         dayContainer.appendChild(dayImg);
@@ -95,16 +93,13 @@
                         dayContainer.appendChild(dayWind);
                         dayContainer.appendChild(dayHumid);
                         dayImg.src = "http://openweathermap.org/img/wn/"+ data.list[j].weather[0].icon +".png";
-
                         var unixCode = data.list[j].dt
-            
                         dayDate.innerHTML = dayjs.unix(unixCode).format('DD/MM/YYYY');
                         dayTemp.textContent = "Temp: " +data.list[j].main.temp+ "°C";
                         dayWind.textContent = "Wind: "+data.list[j].wind.speed+ " KPH";
                         dayHumid.textContent = "Humidity: "+data.list[j].main.humidity+ " %";
                     }
                 }
-            
         });
         results.style.opacity = '1';
     }
