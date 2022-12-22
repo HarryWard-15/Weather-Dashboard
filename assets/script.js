@@ -1,4 +1,6 @@
 (function ($) {
+
+    // grabbing all the elements from the HTML
     var ulEl = document.querySelector('.search-history');
     var button = document.querySelector('.btn');
     var results = document.querySelector('.search-results');
@@ -6,12 +8,13 @@
     var searchCity = '';
     var fiveDayContainer = document.querySelector('.weekCast');
 
-    
+    // pulling the search history from the local storage, if there is none, creating an empty object
     var searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
     if (searchHistory==null) {
         searchHistory = {};
     }
 
+    // loading the search history in the form of a list below the search button.
     function loadHistory() {
         ulEl.innerHTML = "";
         for (let i=Object.keys(searchHistory).length; i>0 ; i--) {
@@ -22,18 +25,22 @@
         };
     }
 
+    // event listner on the search history elements so you can click on them again rather than having to type in the name again
     ulEl.addEventListener('click', function(e) {
         getWeather(e.target.textContent);
     });
 
+    // event listener on the search button that calls the rest of the code.
     button.addEventListener('click', function() {
         searchCity = search.value;
         getWeather(searchCity);
     });
     
+    // assigning my API key and the today forecast element
     var dayContainer = document.querySelector('.todayCast');
     var apiKey = '099bf382f7898a2ef203e1c7447f3027';
 
+    //this function calls the forecast for today with the given parameters, checks if you have entered a valid city, and if so runs the rest of the code.
     function getWeather(city) {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
         .then((response) => response.json())
@@ -50,6 +57,7 @@
         });
     }
 
+    // this function grabs the elements from the today forecase and changes the content within them to the data that was retrieved from the fetch request on line 45.
     function displayOneDay(data) {
         var todayName = document.querySelector('.cityName');
         var todayTemp = document.querySelector('.cityTemp');
@@ -65,6 +73,8 @@
         todayHumidity.textContent = "Humidity: "+data.main.humidity+ " %";
     }
 
+    // this function makes a new fetch request to retrieve the weather data for 5 days, using the longitude and latitude that was passed through from the previous request on line 45
+    // it then iterates through and selects one forecast from each day and then creates the elements and assigns the data to them.
     function displayFiveDay(lon, lat) {
         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
         .then((response) => response.json())
@@ -101,7 +111,10 @@
                     }
                 }
         });
+
+        // making the results visible
         results.style.opacity = '1';
     }
+    //calling the load history function 
     loadHistory();
 })(jQuery);
