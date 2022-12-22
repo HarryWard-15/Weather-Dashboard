@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-image: linear-gradient(to right, #00afff , #00ff8f);
+    padding: 30px;
+}
+
+.container {
+    display: flex;
+}
+
+.title {
+    font-size: 50px;
+    margin-right: 25%;
+    color: white;
+    text-align: right;
+}
+
+.search-container {
+    margin: 20px;
+    width: 20%;
+}
+
+h2 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.search {
+    width: 100%;
+    padding: 15px 0 15px 0;
+    text-indent: 15px;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+.btn {
+    padding: 10px;
+    width: 100%;
+    font-size: 25px;
+    margin-top: 25px;
+    border-radius: 10px;
+    background: #00afff;
+    color: white;
+    font-weight: 500;
+}
+
+hr {
+    margin-top: 25px;
+    width: 101%;
+}
+
+.search-results {
+    opacity: 0;
+    margin-left: 40px;
+    margin-top: 20px;
+    width: 70%;
+}
+
+.todayCast {
+    border: 1px solid;
+    width: 99%;
+}
+
+.fiveDay {
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.cityName {
+    padding-bottom: 20px;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+.infoDate {
+    padding-bottom: 20px;
+    padding-left: 10px;
+    margin-top: 10px;
+    font-weight: bolder;  
+    font-size: xx-large;
+}
+
+.info {
+    padding-bottom: 20px;
+    padding-left: 10px;
+    margin-top: 10px;
+    font-size: x-large;
+}
+
+.cityImg {
+    display: inline-flex;
+    transform: translateY(20%);
+}
+
+.dayContainer {
+    background: #00afff;
+    width: 19%;
+    margin-right: 1%;
+    border-radius: 10px;
+}
+
+.weekCast {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    color: white;
+}
+
+.history {
+    list-style: none;
+    text-align: center;
+    background:lightgrey;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+    font-weight: bolder;
+    font-size: x-large;
+}
